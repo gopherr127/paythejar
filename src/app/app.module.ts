@@ -3,9 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { TabsPage } from '../pages/tabs/tabs';
 import { JarListPage } from '../pages/jar-list/jar-list';
 import { PeopleListPage } from '../pages/people-list/people-list';
 import { FoulListPage } from '../pages/foul-list/foul-list';
@@ -17,11 +17,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     TabsPage,
-    HomePage,
-    ListPage,
     JarListPage,
     PeopleListPage,
-    FoulListPage
+    FoulListPage,
+    HomePage,
+    ListPage
   ],
   imports: [
     BrowserModule,
@@ -31,11 +31,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     TabsPage,
-    HomePage,
-    ListPage,
     JarListPage,
     PeopleListPage,
-    FoulListPage
+    FoulListPage,
+    HomePage,
+    ListPage
   ],
   providers: [
     StatusBar,

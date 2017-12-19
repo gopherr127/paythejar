@@ -3,9 +3,9 @@ import { IonicPageModule } from 'ionic-angular';
 import { FoulListPage } from './foul-list';
 
 @NgModule({
-  declarations: [
+  /* declarations: [
     FoulListPage,
-  ],
+  ], */
   imports: [
     IonicPageModule.forChild(FoulListPage),
   ],

@@ -4,33 +4,37 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { HomePage } from '../pages/home/home';
-import { JarListPage } from '../pages/jar-list/jar-list';
-import { PeopleListPage } from '../pages/people-list/people-list';
-import { FoulListPage } from '../pages/foul-list/foul-list';
 
+export interface PageObj {
+  title: string;
+  component: any;
+  icon: string;
+  index?: number;
+}
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  // the root nav is a child of the root app component
+  // @ViewChild(Nav) gets a reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
+
+  // used for an example of ngFor and navigation
+  pages: PageObj[] = [
+    { title: 'Home', component: TabsPage, icon: 'home', index: 0 },
+    { title: 'Jars', component: TabsPage, icon: 'albums', index: 1 },
+    { title: 'People', component: TabsPage, icon: 'contacts', index: 2 },
+    { title: 'Fouls', component: TabsPage, icon: 'megaphone', index: 3 }
+  ];
 
   rootPage: any = TabsPage;
 
-  pages: Array<{title: string, component: any }>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Jars', component: JarListPage },
-      { title: 'People', component: PeopleListPage },
-      { title: 'Fouls', component: FoulListPage }
-    ];
-
   }
 
   initializeApp() {
@@ -45,6 +49,10 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (page.index) {
+      this.nav.setRoot(page.component, { tabIndex: page.index });
+    } else {
+      this.nav.setRoot(page.component);
+    }
   }
 }

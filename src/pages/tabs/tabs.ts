@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular'; //, NavController, NavParams
+import { IonicPage, NavParams } from 'ionic-angular'; //, NavController
 import { HomePage } from '../home/home';
 import { JarListPage } from '../jar-list/jar-list';
 import { PeopleListPage } from '../people-list/people-list';
@@ -16,9 +16,11 @@ export class TabsPage {
   tab2Root = JarListPage;
   tab3Root = PeopleListPage;
   tab4Root = FoulListPage;
+  mySelectedIndex: number;
 
-  //public navCtrl: NavController, public navParams: NavParams
-  constructor() {
+  //public navCtrl: NavController
+  constructor(navParams: NavParams) {
+    this.mySelectedIndex = navParams.data.tabIndex || 0;
   }
 
 }

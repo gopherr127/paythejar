@@ -3,9 +3,9 @@ import { IonicPageModule } from 'ionic-angular';
 import { PeopleListPage } from './people-list';
 
 @NgModule({
-  declarations: [
+  /* declarations: [
     PeopleListPage,
-  ],
+  ], */
   imports: [
     IonicPageModule.forChild(PeopleListPage),
   ],

@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the PeopleListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { PeopleDataProvider } from '../../providers/people-data/people-data';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PeopleListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  data: any;
+  people: any; // change this to Person[] = []
+  page = 0;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public peopleData: PeopleDataProvider) {
+      this.getPeople();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PeopleListPage');
+
   }
 
+  getPeople() {
+    this.peopleData.getPeople(this.page).then(data => {
+      this.people = data;
+    });
+  }
+
+  doInfinite(infiniteScroll) {
+    this.page = this.page + 1;
+    setTimeout(() => {
+      this.peopleData.getPeople(this.page).then(data => {
+        this.data = data;
+        for (let i=0; i<this.data.length; i++) {
+          this.people.push(this.data[i]);
+        }
+      }, error => console.log(error));
+
+      infiniteScroll.complete();
+    }, 500);
+  }
 }

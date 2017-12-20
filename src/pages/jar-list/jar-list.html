@@ -12,10 +12,10 @@
     <ion-list>
       <ion-item-sliding *ngFor="let jar of jars">
         <ion-item>
-            <h3>{{jar.name}}</h3>
-            <p>
-              Current amount: {{jar.currentAmount | currency}}
-            </p>
+          <h3>{{jar.name}}</h3>
+          <p>
+            Current amount: {{jar.currentAmount | currency}}
+          </p>
         </ion-item>
         <ion-item-options side="right">
           <button ion-button>

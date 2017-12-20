@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable()
-export class JarDataProvider {
+export class PeopleDataProvider {
 
-  private apiUrl = 'https://paythejarapi.azurewebsites.net/api/jars';
-
+  private apiUrl = 'https://paythejarapi.azurewebsites.net/api/appusers';
+  
   constructor(public http: HttpClient) { }
 
-  getJars(page) {
+  getPeople(page) {
     return new Promise(resolve => {
       this.http.get(this.apiUrl + '?page=' + page).subscribe(data => {
         resolve(data);

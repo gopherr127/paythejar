@@ -1,18 +1,36 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>People</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
-</ion-content>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>People</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-list>
+        <ion-item-sliding *ngFor="let person of people">
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="{{person.avatarUrl}}">
+            </ion-avatar>
+            <h3>{{person.username}}</h3>
+            <p>
+              {{person.firstname}} {{person.lastname}}
+            </p>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button>
+              <ion-icon name="eye"></ion-icon>
+              Details
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+  </ion-content>

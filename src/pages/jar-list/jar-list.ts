@@ -43,7 +43,8 @@ export class JarListPage {
           this.jars.push(this.data[i]);
         }
       }, error => console.log(error));
+      
       infiniteScroll.complete();
-    }, 1000);
+    }, 500);
   }
 }

@@ -31,8 +31,6 @@ export class JarListPage {
   getJars() {
     this.jarData.getJars(this.page).then(data => {
       this.jars = data;
-      console.log('Data made it to jar-list.ts');
-      console.log(this.jars);
     });
   }
 

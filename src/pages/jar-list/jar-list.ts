@@ -13,7 +13,6 @@ export class JarListPage {
 
   data: any;
   jars: any; // change this to Jar[] = []
-  errorMessage: string;
   page = 0;
   
 
@@ -43,7 +42,7 @@ export class JarListPage {
           this.jars.push(this.data[i]);
         }
       }, error => console.log(error));
-      
+
       infiniteScroll.complete();
     }, 500);
   }

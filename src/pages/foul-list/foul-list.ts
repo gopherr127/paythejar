@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the FoulListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FoulDataProvider } from '../../providers/foul-data/foul-data';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FoulListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  data: any;
+  fouls: any;
+  page = 0;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public foulData: FoulDataProvider) {
+      this.getFouls();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FoulListPage');
+    
   }
 
+  getFouls() {
+    this.foulData.getFouls(this.page).then(data => {
+      this.fouls = data;
+    });
+  }
+
+  doInfinite(infiniteScroll) {
+    this.page = this.page + 1;
+    setTimeout(() => {
+      this.foulData.getFouls(this.page).then(data => {
+        this.data = data;
+        for (let i=0; i<this.data.length; i++) {
+          this.fouls.push(this.data[i]);
+        }
+      }, error => console.log(error));
+
+      infiniteScroll.complete();
+    }, 500);
+  }
 }

@@ -15,6 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { JarDataProvider } from '../providers/jar-data/jar-data';
 import { PeopleDataProvider } from '../providers/people-data/people-data';
+import { FoulDataProvider } from '../providers/foul-data/foul-data';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PeopleDataProvider } from '../providers/people-data/people-data';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JarDataProvider,
-    PeopleDataProvider
+    PeopleDataProvider,
+    FoulDataProvider
   ]
 })
 export class AppModule {}

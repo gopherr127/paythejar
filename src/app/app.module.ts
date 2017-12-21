@@ -5,7 +5,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { TabsPage } from '../pages/tabs/tabs';
 import { JarListPage } from '../pages/jar-list/jar-list';
 import { PeopleListPage } from '../pages/people-list/people-list';
@@ -25,8 +24,7 @@ import { MessageService } from '../providers/message-service/message-service';
     JarListPage,
     PeopleListPage,
     FoulListPage,
-    HomePage,
-    ListPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -40,8 +38,7 @@ import { MessageService } from '../providers/message-service/message-service';
     JarListPage,
     PeopleListPage,
     FoulListPage,
-    HomePage,
-    ListPage
+    HomePage
   ],
   providers: [
     StatusBar,

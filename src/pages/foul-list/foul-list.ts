@@ -1,9 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Subscription } from 'rxjs/Subscription';
 
-import { JarListPage } from '../jar-list/jar-list';
-import { PeopleListPage } from '../people-list/people-list';
+import { TabsPage } from '../tabs/tabs';
 import { MessageService } from '../../providers/message-service/message-service';
 import { FoulDataProvider } from '../../providers/foul-data/foul-data';
 import { Jar } from '../../app/jar/jar';
@@ -26,6 +25,7 @@ export class FoulListPage implements OnDestroy {
   selectedFoul: Foul;
 
   constructor(
+    public app: App,
     public navCtrl: NavController, 
     public navParams: NavParams,
     public messageService: MessageService,
@@ -61,9 +61,9 @@ export class FoulListPage implements OnDestroy {
     this.messageService.sendFoulSelectedMessage(foul);
     // Auto-navigate to the next appropriate page
     if (!this.selectedJar) {
-      this.navCtrl.push(JarListPage);
+      this.app.getRootNav().setRoot(TabsPage, { tabIndex: 1 });
     } else if (!this.selectedPerson) {
-      this.navCtrl.push(PeopleListPage);
+      this.app.getRootNav().setRoot(TabsPage, { tabIndex: 2 });
     }
   }
 

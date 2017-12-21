@@ -6,8 +6,11 @@
     <ion-title>People</ion-title>
   </ion-navbar>
   <ion-toolbar [hidden]="!selectedJar && !selectedFoul">
-    <button ion-button [hidden]="!selectedJar">{{selectedJar?.name}}</button>
-    <button ion-button [hidden]="!selectedFoul">{{selectedFoul?.name}}</button>
+    <button ion-button icon-end [hidden]="!selectedJar" (click)="onSelectedJarClicked()">
+      {{selectedJar?.name}}<ion-icon name="close-circle"></ion-icon></button>
+    <button ion-button icon-end [hidden]="!selectedFoul" (click)="onSelectedFoulClicked()">
+      {{selectedFoul?.name}}<ion-icon name="close-circle"></ion-icon></button>
+    <button ion-button (click)="onClearAllClicked()"><ion-icon name="close"></ion-icon></button>
   </ion-toolbar>
 </ion-header>
 

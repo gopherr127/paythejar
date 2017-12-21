@@ -61,10 +61,27 @@ export class FoulListPage implements OnDestroy {
     this.messageService.sendFoulSelectedMessage(foul);
     // Auto-navigate to the next appropriate page
     if (!this.selectedJar) {
-      this.app.getRootNav().setRoot(TabsPage, { tabIndex: 1 });
+      this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 1 });
     } else if (!this.selectedPerson) {
-      this.app.getRootNav().setRoot(TabsPage, { tabIndex: 2 });
+      this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 2 });
     }
+  }
+
+  onSelectedJarClicked() {
+    this.messageService.clearJarSelectedMessage();
+    this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 1 });
+  }
+
+  onSelectedPersonClicked() {
+    this.messageService.clearPersonSelectedMessage();
+    this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 2 });
+  }
+
+  onClearAllClicked() {
+    this.messageService.clearJarSelectedMessage();
+    this.messageService.clearPersonSelectedMessage();
+    this.messageService.clearFoulSelectedMessage();
+    this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 1 });
   }
 
   doInfinite(infiniteScroll) {

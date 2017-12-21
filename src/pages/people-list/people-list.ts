@@ -61,10 +61,27 @@ export class PeopleListPage implements OnDestroy {
     this.messageService.sendPersonSelectedMessage(person);
     // Auto-navigate to the next approriate page
     if (!this.selectedJar) {
-      this.app.getRootNav().setRoot(TabsPage, { tabIndex: 1 });
+      this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 1 });
     } else if (!this.selectedFoul) {
-      this.app.getRootNav().setRoot(TabsPage, { tabIndex: 3 });
+      this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 3 });
     }
+  }
+
+  onSelectedJarClicked() {
+    this.messageService.clearJarSelectedMessage();
+    this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 1 });
+  }
+
+  onSelectedFoulClicked() {
+    this.messageService.clearFoulSelectedMessage();
+    this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 3 });
+  }
+
+  onClearAllClicked() {
+    this.messageService.clearJarSelectedMessage();
+    this.messageService.clearPersonSelectedMessage();
+    this.messageService.clearFoulSelectedMessage();
+    this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 1 });
   }
 
   doInfinite(infiniteScroll) {

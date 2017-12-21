@@ -36,6 +36,7 @@ export class MessageService {
     this.jarSelectedSubject.next(jarSelected);
   }
   clearJarSelectedMessage() {
+    this.currentlySelectedJar = null;
     this.jarSelectedSubject.next();
   }
   getJarSelectedMessage(): Observable<Jar> {
@@ -48,6 +49,7 @@ export class MessageService {
     this.personSelectedSubject.next(personSelected);
   }
   clearPersonSelectedMessage() {
+    this.currentlySelectedPerson = null;
     this.personSelectedSubject.next();
   }
   getPersonSelectedMessage(): Observable<Person> {
@@ -60,6 +62,7 @@ export class MessageService {
     this.foulSelectedSubject.next(foulSelected);
   }
   clearFoulSelectedMessage() {
+    this.currentlySelectedFoul = null;
     this.foulSelectedSubject.next();
   }
   getFoulSelectedMessage(): Observable<Foul> {

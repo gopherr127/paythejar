@@ -61,11 +61,27 @@ export class JarListPage implements OnDestroy {
     this.messageService.sendJarSelectedMessage(jar);
     // Auto-navigate to the next appropriate page
     if (!this.selectedPerson) {
-      this.app.getRootNav().setRoot(TabsPage, { tabIndex: 2 });
-
+      this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 2 });
     } else if (!this.selectedFoul) {
-      this.app.getRootNav().setRoot(TabsPage, { tabIndex: 3 });
+      this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 3 });
     }
+  }
+
+  onSelectedPersonClicked() {
+    this.messageService.clearPersonSelectedMessage();
+    this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 2 });
+  }
+
+  onSelectedFoulClicked() {
+    this.messageService.clearFoulSelectedMessage();
+    this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 3 });
+  }
+
+  onClearAllClicked() {
+    this.messageService.clearJarSelectedMessage();
+    this.messageService.clearPersonSelectedMessage();
+    this.messageService.clearFoulSelectedMessage();
+    this.app.getRootNavs()[0].setRoot(TabsPage, { tabIndex: 1 });
   }
 
   doInfinite(infiniteScroll) {

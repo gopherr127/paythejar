@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,10 +15,11 @@ export interface PageObj {
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnDestroy {
   // the root nav is a child of the root app component
   // @ViewChild(Nav) gets a reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
+  message: any;
 
   // used for an example of ngFor and navigation
   pages: PageObj[] = [
@@ -34,7 +35,8 @@ export class MyApp {
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen) {
-    this.initializeApp();
+      
+      this.initializeApp();
   }
 
   initializeApp() {
@@ -54,5 +56,8 @@ export class MyApp {
     } else {
       this.nav.setRoot(page.component);
     }
+  }
+
+  ngOnDestroy() {
   }
 }

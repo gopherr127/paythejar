@@ -5,24 +5,28 @@
     </button>
     <ion-title>Jars</ion-title>
   </ion-navbar>
+  <ion-toolbar [hidden]="!selectedPerson && !selectedFoul">
+    <button ion-button [hidden]="!selectedPerson">{{selectedPerson?.username}}</button>
+    <button ion-button [hidden]="!selectedFoul">{{selectedFoul?.name}}</button>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <!-- <ion-refresher pulling-text="Pull to refresh..." on-refresh="getJars()"></ion-refresher> -->
   <ion-list>
     <ion-item-sliding *ngFor="let jar of jars">
-      <ion-item>
+      <button ion-item (click)="onJarItemClicked(jar)">
         <h3>{{jar.name}}</h3>
         <p>
           Current amount: {{jar.currentAmount | currency}}
         </p>
-      </ion-item>
+      </button>
       <ion-item-options side="right">
-        <button ion-button>
-          <ion-icon name="eye"></ion-icon>
-          Details
-        </button>
-      </ion-item-options>
+          <button ion-button color="secondary">
+            <ion-icon name="cash"></ion-icon>
+            Make 'em pay!
+          </button>
+        </ion-item-options>
     </ion-item-sliding>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

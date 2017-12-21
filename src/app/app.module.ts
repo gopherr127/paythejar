@@ -16,7 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { JarDataProvider } from '../providers/jar-data/jar-data';
 import { PeopleDataProvider } from '../providers/people-data/people-data';
 import { FoulDataProvider } from '../providers/foul-data/foul-data';
-import { SharedDataProvider } from '../providers/shared-data/shared-data';
+import { MessageService } from '../providers/message-service/message-service';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import { SharedDataProvider } from '../providers/shared-data/shared-data';
     JarDataProvider,
     PeopleDataProvider,
     FoulDataProvider,
-    SharedDataProvider
+    MessageService
   ]
 })
 export class AppModule {}

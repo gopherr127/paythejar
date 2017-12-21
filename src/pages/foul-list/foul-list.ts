@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Subscription } from 'rxjs/Subscription';
 
+import { MessageService } from '../../providers/message-service/message-service';
 import { FoulDataProvider } from '../../providers/foul-data/foul-data';
+import { Jar } from '../../app/jar/jar';
+import { Person } from '../../app/person/person';
 import { Foul } from '../../app/foul/foul';
 
 @IonicPage()
@@ -9,23 +13,39 @@ import { Foul } from '../../app/foul/foul';
   selector: 'page-foul-list',
   templateUrl: 'foul-list.html',
 })
-export class FoulListPage {
-
+export class FoulListPage implements OnDestroy {
   data: any;
   fouls: any;
   page = 0;
-  noJarOrPersonSelected: boolean = false;
+  selectedJar: Jar;
+  jarSelectedSubscription: Subscription;
+  selectedPerson: Person;
+  personSelectedSubscription: Subscription;
   selectedFoul: Foul;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public messageService: MessageService,
     public foulData: FoulDataProvider) {
+      
       this.getFouls();
+
+      // Get currently selected jar and person, if exist...
+      this.selectedJar = this.messageService.currentlySelectedJar;
+      this.selectedPerson = this.messageService.currentlySelectedPerson;
+      // ...and subscribe to future updates
+      this.jarSelectedSubscription = this.messageService.getJarSelectedMessage()
+        .subscribe(message => {
+          this.selectedJar = message;
+        });
+      this.personSelectedSubscription = this.messageService.getPersonSelectedMessage()
+        .subscribe(message => {
+          this.selectedPerson = message;
+        });
   }
 
   ionViewDidLoad() {
-    
   }
 
   getFouls() {
@@ -34,9 +54,9 @@ export class FoulListPage {
     });
   }
   
-  selectFoul(foul) {
-    console.log('Selection made: ' + foul.name);
+  onFoulItemSelected(foul) {
     this.selectedFoul = foul;
+    this.messageService.sendFoulSelectedMessage(foul);
   }
 
   doInfinite(infiniteScroll) {
@@ -51,5 +71,10 @@ export class FoulListPage {
 
       infiniteScroll.complete();
     }, 500);
+  }
+
+  ngOnDestroy() {
+    this.jarSelectedSubscription.unsubscribe();
+    this.personSelectedSubscription.unsubscribe();
   }
 }

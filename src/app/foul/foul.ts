@@ -1,3 +1,3 @@
 export interface Foul {
-    name: stirng
+    name: string
 }

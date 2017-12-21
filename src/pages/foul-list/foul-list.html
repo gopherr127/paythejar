@@ -5,17 +5,16 @@
     </button>
     <ion-title>Fouls</ion-title>
   </ion-navbar>
-  <ion-toolbar [hidden]="noJarOrPersonSelected">
-    <button ion-button>Jar 2</button>
-    <button ion-button>George</button>
-    <button ion-button [hidden]="!selectedFoul">Foul</button>
+  <ion-toolbar [hidden]="!selectedJar && !selectedPerson">
+    <button ion-button [hidden]="!selectedJar">{{selectedJar?.name}}</button>
+    <button ion-button [hidden]="!selectedPerson">{{selectedPerson?.username}}</button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor="let foul of fouls">
-      <button ion-item (click)="selectFoul(foul)">
+      <button ion-item (click)="onFoulItemSelected(foul)">
         <h3>{{foul.name}}</h3>
         <p>
           {{foul.description}}

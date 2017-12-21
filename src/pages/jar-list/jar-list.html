@@ -8,27 +8,25 @@
 </ion-header>
 
 <ion-content>
-    <!-- <ion-refresher pulling-text="Pull to refresh..." on-refresh="getJars()"></ion-refresher> -->
-    <ion-list>
-      <ion-item-sliding *ngFor="let jar of jars">
-        <ion-item>
-          <h3>{{jar.name}}</h3>
-          <p>
-            Current amount: {{jar.currentAmount | currency}}
-          </p>
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button>
-            <ion-icon name="eye"></ion-icon>
-            Details
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Loading...">
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+  <!-- <ion-refresher pulling-text="Pull to refresh..." on-refresh="getJars()"></ion-refresher> -->
+  <ion-list>
+    <ion-item-sliding *ngFor="let jar of jars">
+      <ion-item>
+        <h3>{{jar.name}}</h3>
+        <p>
+          Current amount: {{jar.currentAmount | currency}}
+        </p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button>
+          <ion-icon name="eye"></ion-icon>
+          Details
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

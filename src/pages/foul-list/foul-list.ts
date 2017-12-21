@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { FoulDataProvider } from '../../providers/foul-data/foul-data';
+import { Foul } from '../../app/foul/foul';
 
 @IonicPage()
 @Component({
@@ -13,6 +14,8 @@ export class FoulListPage {
   data: any;
   fouls: any;
   page = 0;
+  noJarOrPersonSelected: boolean = false;
+  selectedFoul: Foul;
 
   constructor(
     public navCtrl: NavController, 
@@ -29,6 +32,11 @@ export class FoulListPage {
     this.foulData.getFouls(this.page).then(data => {
       this.fouls = data;
     });
+  }
+  
+  selectFoul(foul) {
+    console.log('Selection made: ' + foul.name);
+    this.selectedFoul = foul;
   }
 
   doInfinite(infiniteScroll) {

@@ -2,6 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Subscription } from 'rxjs/Subscription';
 
+import { JarListPage } from '../jar-list/jar-list';
+import { PeopleListPage } from '../people-list/people-list';
 import { MessageService } from '../../providers/message-service/message-service';
 import { FoulDataProvider } from '../../providers/foul-data/foul-data';
 import { Jar } from '../../app/jar/jar';
@@ -57,6 +59,12 @@ export class FoulListPage implements OnDestroy {
   onFoulItemSelected(foul) {
     this.selectedFoul = foul;
     this.messageService.sendFoulSelectedMessage(foul);
+    // Auto-navigate to the next appropriate page
+    if (!this.selectedJar) {
+      this.navCtrl.push(JarListPage);
+    } else if (!this.selectedPerson) {
+      this.navCtrl.push(PeopleListPage);
+    }
   }
 
   doInfinite(infiniteScroll) {

@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ENV } from '@app/env';
 
 @Injectable()
 export class PeopleDataProvider {
 
-  private apiUrl = 'https://paythejarapi.azurewebsites.net/api/appusers';
+  private apiUrl = ENV.apiUrl + '/appusers';
   
   constructor(public http: HttpClient) { }
 

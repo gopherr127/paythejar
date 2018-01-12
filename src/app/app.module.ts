@@ -17,6 +17,9 @@ import { PeopleDataProvider } from '../providers/people-data/people-data';
 import { FoulDataProvider } from '../providers/foul-data/foul-data';
 import { MessageService } from '../providers/message-service/message-service';
 
+import { ENV } from '@app/env';
+console.log(ENV.mode);
+
 @NgModule({
   declarations: [
     MyApp,

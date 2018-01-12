@@ -19,7 +19,10 @@
   <ion-list>
     <ion-item-sliding *ngFor="let jar of jars">
       <button ion-item (click)="onJarItemClicked(jar)">
-        <h3>{{jar.name}}</h3>
+        <ion-avatar item-start>
+          <img src="../../assets/imgs/jar.svg" width="40px">
+        </ion-avatar>
+        <h2>{{jar.name}}</h2>
         <p>
           Current amount: {{jar.currentAmount | currency}}
         </p>

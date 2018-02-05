@@ -22,7 +22,7 @@ export class FoulListPage implements OnDestroy {
   jarSelectedSubscription: Subscription;
   selectedPerson: Person;
   personSelectedSubscription: Subscription;
-  selectedFoul: Foul;
+  selectedFoulIndex: -1;
 
   constructor(
     public app: App,
@@ -56,8 +56,8 @@ export class FoulListPage implements OnDestroy {
     });
   }
   
-  onFoulItemSelected(foul) {
-    this.selectedFoul = foul;
+  onFoulItemSelected(foul, indx) {
+    this.selectedFoulIndex = indx;
     this.messageService.sendFoulSelectedMessage(foul);
     // Auto-navigate to the next appropriate page
     if (!this.selectedJar) {

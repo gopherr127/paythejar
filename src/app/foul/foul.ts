@@ -1,3 +1,5 @@
 export interface Foul {
-    name: string
+    name: string;
+
+    isSelected: boolean;
 }

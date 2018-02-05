@@ -17,8 +17,8 @@
 <ion-content>
   <!-- <ion-refresher pulling-text="Pull to refresh..." on-refresh="getJars()"></ion-refresher> -->
   <ion-list>
-    <ion-item-sliding *ngFor="let jar of jars">
-      <button ion-item (click)="onJarItemClicked(jar)">
+    <ion-item-sliding *ngFor="let jar of jars; let i = index" [class.selected]="i == selectedJarIndex">
+      <button ion-item (click)="onJarItemClicked(jar, i)" style="background-color: transparent">
         <ion-avatar item-start>
           <img src="../../assets/imgs/jar.svg" width="40px">
         </ion-avatar>

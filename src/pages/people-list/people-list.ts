@@ -20,7 +20,7 @@ export class PeopleListPage implements OnDestroy {
   page = 0;
   selectedJar: Jar;
   jarSelectedSubscription: Subscription;
-  selectedPerson: Person;
+  selectedPersonIndex: -1;
   selectedFoul: Foul;
   foulSelectedSubscription: Subscription;
 
@@ -56,8 +56,8 @@ export class PeopleListPage implements OnDestroy {
     });
   }
 
-  onPersonItemClicked(person) {
-    this.selectedPerson = person;
+  onPersonItemClicked(person, indx) {
+    this.selectedPersonIndex = indx;
     this.messageService.sendPersonSelectedMessage(person);
     // Auto-navigate to the next approriate page
     if (!this.selectedJar) {

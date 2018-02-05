@@ -16,8 +16,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let person of people">
-      <button ion-item (click)="onPersonItemClicked(person)">
+    <ion-item-sliding *ngFor="let person of people; let i = index" [class.selected]="i == selectedPersonIndex">
+      <button ion-item (click)="onPersonItemClicked(person, i)" style="background-color: transparent">
         <ion-avatar item-start>
           <img src="{{person.avatarUrl}}">
         </ion-avatar>

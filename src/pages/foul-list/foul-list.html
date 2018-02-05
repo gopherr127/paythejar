@@ -16,9 +16,9 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let foul of fouls">
-      <button ion-item (click)="onFoulItemSelected(foul)">
-        <h3>{{foul.name}}</h3>
+    <ion-item-sliding *ngFor="let foul of fouls; let i = index" [class.selected]="i == selectedFoulIndex"> <!-- style="background-color:#f8f8f8"-->
+      <button ion-item (click)="onFoulItemSelected(foul, i)" style="background-color: transparent">
+        <h2>{{foul.name}}</h2>
         <p>
           {{foul.description}}
         </p>

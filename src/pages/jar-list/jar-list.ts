@@ -18,7 +18,7 @@ export class JarListPage implements OnDestroy {
   data: any;
   jars: any;
   page = 0;
-  selectedJar: Jar;
+  selectedJarIndex = -1;
   selectedPerson: Person;
   personSelectedSubscription: Subscription;
   selectedFoul: Foul;
@@ -56,8 +56,10 @@ export class JarListPage implements OnDestroy {
     });
   }
 
-  onJarItemClicked(jar) {
-    this.selectedJar = jar;
+  onJarItemClicked(jar, indx) {
+    // Doing this causes the styling for selected item not to work:
+    //this.selectedJar = jar; 
+    this.selectedJarIndex = indx;
     this.messageService.sendJarSelectedMessage(jar);
     // Auto-navigate to the next appropriate page
     if (!this.selectedPerson) {
